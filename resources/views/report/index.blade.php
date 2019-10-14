@@ -23,9 +23,6 @@
                 </nav>
             </div>
             <div class="col-md-6 col-sm-12 text-right">
-                <a class="btn btn-primary" href="{{ route('admin.absen.create') }}">
-                    <i class="fa fa-plus"></i> Tambah
-                </a>
             </div>
         </div>
     </div>
@@ -40,7 +37,7 @@
                         <th class="table-plus datatable-nosort">Nama</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
-                        <th class="datatable-nosort" width="10%">Aksi</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,7 +72,7 @@
             searchPlaceholder: "Cari"
         },
         ajax: {
-            "url": "{!! url('admin/absen/allData') !!}",
+            "url": "{!! url('admin/report/allData') !!}",
             "type": "get",
             "dataType": "json",
             "contentType": 'application/json; charset=utf-8',
@@ -84,46 +81,27 @@
             }
         },
         columns: [
-            { data: 'user_id', name: 'user_id' },
+            { data: 'name', name: 'name' },
             { data: 'jam_masuk', name: 'jam_masuk' },
             { data: 'jam_keluar', name: 'jam_keluar' },
-            { data: 'aksi', name: 'aksi' }
+            { data: 'keterangan', name: 'keterangan' }
         ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: "REPORT ABSENSI {{ strtoupper(Auth::user()->name) }}",
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    var col = $('col', sheet);
+                        col.each(function () {
+                            $(this).attr('width', 25);
+                        });        
+                        $(col[3]).attr('width', 40);
+                }
+            }
+        ]
 
     })
-
-    var hapusData = function (id) {
-        swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            dangerMode: true,
-            buttons: true,
-        }).then((willDelete) => {
-            console.log(willDelete)
-            if (willDelete) {
-                $.ajax({
-                    url: "{{ url('admin/map/destroy/') }}/" + id,
-                    type: "POST",
-                    data : {
-                        _token : "{{ csrf_token() }}",
-                        _method : "delete",
-                    },
-                    success : function (response) {
-                        if (response.error == 0) {
-                            swal('Deleted!', response.pesan, 'success')
-                        } else {
-                            swal("Error!", response.pesan, "error")
-                        }
-
-                        table.ajax.reload();
-                    }
-                })
-                
-            } else {
-                swal("Tidak jadi untuk dihapus")
-            }
-        })
-    }
 </script>
 @endpush

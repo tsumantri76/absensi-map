@@ -68,3 +68,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('absen/destroy/{id}', 'AbsensiController@destroy')->name('admin.absen.destroy');
     Route::get('absen/allData', 'AbsensiController@allData')->name('admin.absen.allData');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    // USERS
+    Route::get('report', 'ReportController@index')->name('admin.report.index');
+    Route::get('report/allData', 'ReportController@allData')->name('admin.report.allData');
+});

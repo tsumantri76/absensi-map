@@ -17,14 +17,10 @@
 						<span class="fa fa-users"></span><span class="mtext">Absensi</span>
 					</a>
 				</li>
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="fa fa-pie-chart"></span><span class="mtext">Report</span>
+				<li>
+					<a href="{{ url('admin/report') }}" class="dropdown-toggle no-arrow">
+						<span class="fa fa-pie-chart"></span><span class="mtext">Reprot</span>
 					</a>
-					<ul class="submenu">
-						<li><a href="index.php">Statistik</a></li>
-						<li><a href="index2.php">Print</a></li>
-					</ul>
 				</li>
 				<li class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle">
