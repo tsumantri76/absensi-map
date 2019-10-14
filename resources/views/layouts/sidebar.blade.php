@@ -8,7 +8,7 @@
 		<div class="sidebar-menu">
 			<ul id="accordion-menu">
 				<li>
-					<a href="calendar.php" class="dropdown-toggle no-arrow">
+					<a href="{{ url('home') }}" class="dropdown-toggle no-arrow">
 						<span class="fa fa-home"></span><span class="mtext">Dashboard</span>
 					</a>
 				</li>

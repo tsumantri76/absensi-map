@@ -110,10 +110,18 @@ class AbsensiController extends Controller
     public function allData(Request $request)
     {
         if (Auth::user()->roles()->first()->nama_role == 'administrator') {
-            $query = DB::table('absensis')->orderBy('id', 'desc')->get();
+            $query = DB::table('absensis')
+                ->join('users', 'users.id', '=', 'absensis.user_id')
+                ->select('absensis.id', 'absensis.jam_masuk', 'absensis.jam_keluar', 'absensis.keterangan',
+                'users.name')
+                ->orderBy('absensis.id', 'desc')
+                ->get();
         } else {
             $query = DB::table('absensis')->where('user_id', Auth::user()->id)
-                ->orderBy('id', 'desc')
+                ->join('users', 'users.id', '=', 'absensis.user_id')
+                ->select('absensis.id', 'absensis.jam_masuk', 'absensis.jam_keluar', 'absensis.keterangan',
+                'users.name')
+                ->orderBy('absensis.id', 'desc')
                 ->get();
         }
 

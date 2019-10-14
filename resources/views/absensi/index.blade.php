@@ -84,7 +84,7 @@
             }
         },
         columns: [
-            { data: 'user_id', name: 'user_id' },
+            { data: 'name', name: 'name' },
             { data: 'jam_masuk', name: 'jam_masuk' },
             { data: 'jam_keluar', name: 'jam_keluar' },
             { data: 'aksi', name: 'aksi' }

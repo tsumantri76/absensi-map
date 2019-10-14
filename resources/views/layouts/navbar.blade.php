@@ -4,7 +4,7 @@
 <div class="header clearfix">
 	<div class="header-right">
 		<div class="brand-logo">
-			<a href="index.php">
+			<a href="#">
 				<img src="{{ asset('vendors/images/logo.png') }}" alt="" class="mobile-logo">
 			</a>
 		</div>
@@ -21,9 +21,9 @@
 					<span class="user-name">{{ Auth::user()->name }}</span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="profile.php"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a>
+					{{-- <a class="dropdown-item" href="profile.php"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a>
 					<a class="dropdown-item" href="profile.php"><i class="fa fa-cog" aria-hidden="true"></i> Setting</a>
-					<a class="dropdown-item" href="faq.php"><i class="fa fa-question" aria-hidden="true"></i> Help</a>
+					<a class="dropdown-item" href="faq.php"><i class="fa fa-question" aria-hidden="true"></i> Help</a> --}}
 					<form action="{{ route('logout') }}" method="post">
 					{{ csrf_field() }}
 						<button class="dropdown-item" type="submit" href="{{ route('logout') }}">
