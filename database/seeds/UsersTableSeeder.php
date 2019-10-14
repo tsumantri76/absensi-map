@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
         	[
 	            'name' => 'Tatang S',
-	            'username' => 'ts76',
+	            'username' => 'sumantri',
 	            'email' => 'tsumantri76@gmail.com',
 	            'password' => bcrypt('ayamgoreng'),
 	            'api_token' => bcrypt('tsumantri76@gmail.com'),
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         	],
         	[
 	            'name' => 'Odi Akhyan Shodiq',
-	            'username' => 'akhyan',
+	            'username' => 'odi.akhyan',
 	            'email' => 'odi.akhyan@outlook.com',
 	            'password' => bcrypt('ayamgoreng'),
 	            'api_token' => bcrypt('odi.akhyan@outlook.com'),
