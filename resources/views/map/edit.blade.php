@@ -22,28 +22,47 @@
     </div>
     <!-- Simple Datatable start -->
     <div class="card box-shadow mb-30">
-        <form action="{{ route('admin.role.update', ['id' => $role->id]) }}" method="post">
+        <div class="card-body">`
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Get Location</label>
+                <div class="col-sm-12 col-md-10">
+                    <button onclick="getLocation()" class="btn btn-primary">
+                        <i class="fa fa-map-marker"></i> Get Location
+                    </button>
+                </div>
+            </div>
+            <hr>
+
+        <form action="{{ route('admin.map.update', ['id' => $map->id]) }}" method="post">
         {{ csrf_field() }}
         {{ method_field('put') }}
-            <div class="card-body">
+
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Nama Role</label>
+                    <label class="col-sm-12 col-md-2 col-form-label">Tempat</label>
                     <div class="col-sm-12 col-md-10">
-                        <input class="form-control" type="text" name="nama" value="{{ $role->nama_role }}">
+                        <input class="form-control" type="text" name="nama_tempat" value="{{ $map->nama_tempat }}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Keterangan</label>
+                    <label class="col-sm-12 col-md-2 col-form-label">Latitude</label>
                     <div class="col-sm-12 col-md-10">
-                        <input class="form-control" type="text" name="keterangan" value="{{ $role->keterangan }}">
+                        <input class="form-control" type="text" name="latitude" id="latitude" 
+                        value="{{ $map->latitude }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label">Longitude</label>
+                    <div class="col-sm-12 col-md-10">
+                        <input class="form-control" type="text" name="longitude" id="longitude" 
+                        value="{{ $map->longitude }}" readonly>
                     </div>
                 </div>
             </div>
             <div class="card-footer text-muted">
                 <span>
-                    <button type="button" class="btn btn-warning">
+                    <a href="{{ route('admin.map.index') }}" class="btn btn-warning">
                         Kembali
-                    </button>
+                    </a>
                 </span>
                 <span>
                     <button type="submit" class="btn btn-primary">
@@ -57,5 +76,17 @@
 @endsection
 
 @push('script')
-    
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        view.innerHTML = "Yah browsernya ngga support Geolocation bro!";
+    }
+}
+ function showPosition(position) {
+    document.getElementById("latitude").value = position.coords.latitude;
+    document.getElementById("longitude").value = position.coords.longitude;
+ }
+</script>
 @endpush

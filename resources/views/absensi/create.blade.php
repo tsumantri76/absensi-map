@@ -60,9 +60,9 @@
             </div>
             <div class="card-footer text-muted">
                 <span>
-                    <button type="button" class="btn btn-warning">
+                    <a href="{{ route('admin.absen.index') }}" class="btn btn-warning">
                         Kembali
-                    </button>
+                    </a>
                 </span>
                 <span>
                     <button type="submit" class="btn btn-primary">

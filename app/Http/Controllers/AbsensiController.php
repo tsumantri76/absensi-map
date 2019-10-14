@@ -119,8 +119,10 @@ class AbsensiController extends Controller
 
         return Datatables::of($query)
         ->addColumn('aksi', function ($absensi) {
+            $route = route('admin.absen.edit', $absensi->id);
+            
             if ($absensi->jam_keluar == '') {
-                return '<a href="/admin/absen/edit/' .$absensi->id. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Absen Keluar"><i class="fa fa-sign-out"></i>Keluar</a>';
+                return '<a href="'.$route.'" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Absen Keluar"><i class="fa fa-sign-out"></i>Keluar</a>';
             }
            
         })

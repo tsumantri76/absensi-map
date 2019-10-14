@@ -135,7 +135,9 @@ class UsersController extends Controller
     {
         return Datatables::of(User::query())
         ->addColumn('aksi', function ($user) {
-            return '<a href="/admin/user/edit/' .$user->id. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
+            $edit = route('admin.user.edit', $user->id);
+
+            return '<a href="' .$edit. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
             '<a href="#" onclick="hapusData('.$user->id.')" class="btn-sm btn btn-danger" title="Hapus" data-toggle="tooltip"><i class="fa fa-trash"></i></a>';
         })
         ->rawColumns(['aksi'])

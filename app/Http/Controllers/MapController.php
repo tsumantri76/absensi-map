@@ -47,7 +47,7 @@ class MapController extends Controller
 
     public function edit($id)
     {
-        $map = Role::find($id);
+        $map = Map::find($id);
 
         return view('map.edit', [
             'title' => 'Edit Role',
@@ -87,7 +87,9 @@ class MapController extends Controller
     {
         return Datatables::of(Map::query())
         ->addColumn('aksi', function ($map) {
-            return '<a href="/admin/map/edit/' .$map->id. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
+            $edit = route('admin.map.edit', $map->id);
+
+            return '<a href="' .$edit. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
             '<a href="#" onclick="hapusData('.$map->id.')" class="btn-sm btn btn-danger" title="Hapus" data-toggle="tooltip"><i class="fa fa-trash"></i></a>';
         })
         ->rawColumns(['aksi'])

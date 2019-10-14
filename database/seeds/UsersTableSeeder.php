@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
+        DB::table('users')->insert([
         	[
 	            'name' => 'Tatang S',
 	            'username' => 'sumantri',
@@ -30,6 +30,6 @@ class UsersTableSeeder extends Seeder
 	            'role_id' => 2,
 	            'pegawai_id' => 2,
         	]
-        );
+        ]);
     }
 }

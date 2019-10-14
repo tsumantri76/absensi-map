@@ -123,7 +123,9 @@ class RoleController extends Controller
     {
         return Datatables::of(Role::query())
         ->addColumn('aksi', function ($role) {
-            return '<a href="/admin/role/edit/' .$role->id. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
+            $edit = route('admin.role.edit', $role->id);
+
+            return '<a href="' .$edit. '" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a> '.
             '<a href="#" onclick="hapusData('.$role->id.')" class="btn-sm btn btn-danger" title="Hapus" data-toggle="tooltip"><i class="fa fa-trash"></i></a>';
         })
         ->rawColumns(['aksi'])
