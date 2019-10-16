@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::put('absen/update/{id}', 'AbsensiController@update')->name('admin.absen.update');
     Route::delete('absen/destroy/{id}', 'AbsensiController@destroy')->name('admin.absen.destroy');
     Route::get('absen/allData', 'AbsensiController@allData')->name('admin.absen.allData');
+    Route::get('absen/getIp', 'AbsensiController@getIp')->name('admin.absen.getIp');
 });
 
 Route::group(['prefix' => 'admin'], function() {

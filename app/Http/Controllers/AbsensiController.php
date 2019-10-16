@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Map;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use \Torann\GeoIP\Facades\GeoIP as GeoIP;
 
 class AbsensiController extends Controller
 {
@@ -136,5 +137,20 @@ class AbsensiController extends Controller
         })
         ->rawColumns(['aksi'])
         ->make(true);
+    }
+
+    public function getIp()
+    {
+        $location = GeoIP::getLocation();
+
+        $data = [
+            'lat' => $location->lat,
+            'lon' => $location->lon
+        ];
+
+        return response()->json([
+            'error' => $location ? 0 : 1,
+            'data' => $data
+        ]);
     }
 }

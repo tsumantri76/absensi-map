@@ -84,16 +84,19 @@
 
 @push('script')
 <script>
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        view.innerHTML = "Yah browsernya ngga support Geolocation bro!";
+    function getLocation() {
+        $.ajax({
+            url: "{{ route('admin.absen.getIp') }}",
+            type: "GET",
+            data: "",
+            dataType: "json",
+            success : function(response){
+                if (response.error == 0) {
+                    $("input[name=latitude]").val(response.data.lat)
+                    $("input[name=longitude]").val(response.data.lon)
+                }
+            }
+        })
     }
-}
- function showPosition(position) {
-    document.getElementById("latitude").value = position.coords.latitude;
-    document.getElementById("longitude").value = position.coords.longitude;
- }
 </script>
 @endpush

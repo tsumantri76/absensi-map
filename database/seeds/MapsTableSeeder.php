@@ -11,7 +11,7 @@ class MapsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
+        DB::table('maps')->insert([
         	[
         		'latitude' => '-6.2702753',
         		'longitude' => '107.1420931',
