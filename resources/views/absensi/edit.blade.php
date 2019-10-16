@@ -84,19 +84,43 @@
 
 @push('script')
 <script>
+    // function getLocation() {
+    //     $.ajax({
+    //         url: "{{ route('admin.absen.getIp') }}",
+    //         type: "GET",
+    //         data: "",
+    //         dataType: "json",
+    //         success : function(response){
+    //             if (response.error == 0) {
+    //                 $("input[name=latitude]").val(response.data.lat)
+    //                 $("input[name=longitude]").val(response.data.lon)
+    //             }
+    //         }
+    //     })
+    // }
+
+    function showLocation(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        $("input[name=latitude]").val(latitude)
+        $("input[name=longitude]").val(longitude)
+    }
+
+    function errorHandler(err) {
+        if(err.code == 1) {
+            alert("Error: Access is denied!");
+        } else if( err.code == 2) {
+            alert("Error: Position is unavailable!");
+        }
+    }
+
     function getLocation() {
-        $.ajax({
-            url: "{{ route('admin.absen.getIp') }}",
-            type: "GET",
-            data: "",
-            dataType: "json",
-            success : function(response){
-                if (response.error == 0) {
-                    $("input[name=latitude]").val(response.data.lat)
-                    $("input[name=longitude]").val(response.data.lon)
-                }
-            }
-        })
+        if(navigator.geolocation) {
+            var options = {timeout:60000};
+            navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+        } else {
+            alert("Sorry, browser does not support geolocation!");
+        }
     }
 </script>
 @endpush
